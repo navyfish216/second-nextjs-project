@@ -19,6 +19,8 @@ export default function Page({params, searchParams}: Props) {
             <h2>カテゴリー「{unwrapParams.categoryName}」</h2>
             <p>ページ番号：「{page}」</p>
             <button onClick={() => {router.push("/categories");}}>カテゴリー一覧へ戻る</button>
+            <br />
+            <button onClick={() => {router.back()}}>戻る</button>
         </div>
     )
 }

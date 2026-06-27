@@ -1,4 +1,5 @@
 import { use } from "react";
+import { LikeButton } from "./LikeButton";
 
 type Props = {
   params: Promise<{ photoId: string }>;
@@ -18,6 +19,7 @@ export default function Page({ params }: Props) {
           </tr>
         </tbody>
       </table>
+      <LikeButton photoId={unwrapParams.photoId} />
     </div>
   );
 }
