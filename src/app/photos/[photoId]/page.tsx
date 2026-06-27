@@ -1,4 +1,4 @@
-import { use } from "react";
+//import { use } from "react";
 import { LikeButton } from "./LikeButton";
 
 type Props = {
@@ -6,11 +6,11 @@ type Props = {
 };
 
 // ★:props からパスパラメーターが参照できる
-export default function Page({ params }: Props) {
-    const unwrapParams = use(params);
+export default async function Page({ params }: Props) {
+  //const unwrapParams = use(params);
   return (
     <div>
-      <h1>写真ID「{unwrapParams.photoId}」の詳細画面</h1>
+      <h1>写真ID「{(await params).photoId}」の詳細画面</h1>
       <table>
         <tbody>
           <tr>
@@ -19,7 +19,7 @@ export default function Page({ params }: Props) {
           </tr>
         </tbody>
       </table>
-      <LikeButton photoId={unwrapParams.photoId} />
+      <LikeButton photoId={(await params).photoId} />
     </div>
   );
 }
