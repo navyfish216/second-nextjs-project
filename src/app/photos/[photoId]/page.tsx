@@ -1,5 +1,6 @@
 //import { use } from "react";
-import { LikeButton } from "./LikeButton";
+//import { LikeButton } from "./LikeButton";
+import { LikeButton } from "../../_components/LikeButton";
 
 type Props = {
   params: Promise<{ photoId: string }>;
@@ -19,7 +20,7 @@ export default async function Page({ params }: Props) {
           </tr>
         </tbody>
       </table>
-      <LikeButton photoId={(await params).photoId} />
+      <LikeButton id={(await params).photoId} />
     </div>
   );
 }
