@@ -75,6 +75,7 @@ export default async function Page({ params, searchParams }: Props) {
           ))}
       </ul>
       <ul className={styles.pagination}>
+        {/* 1ページ目以外の場合に前へリンク表示 */}
         {page !== 1 && (
           <li>
             <Link
@@ -84,6 +85,7 @@ export default async function Page({ params, searchParams }: Props) {
             </Link>
           </li>
         )}
+        {/* 最終ページ目以外の場合に次へリンク表示 */}
         {filteredPhotos.length > endIndex && (
           <li>
             <Link
