@@ -41,10 +41,16 @@ export default async function Page({ params, searchParams }: Props) {
   // 🚧: 本来であれば、カテゴリーに紐づく写真のみを取得しページネーションを施す
   const page = getPage(await searchParams);
 
+  // カテゴリが一致する写真データを抽出
   const filteredPhotos = photos.filter((photo) => photo.categoryId === category.id);
+  // 1ページに表示する件数
   const lines = 10;
+  // ページ番号から開始インデックスを計算
   const startIndex = (page -1) * lines
+  // ページ番号から終了インデックスを計算
   const endIndex = page * lines;
+
+  // ページに表示する写真データを抽出
   let photosToDisplay: Photo[] = [];
   if (filteredPhotos.length > startIndex) {
     for (let i = startIndex; i < endIndex; i++) {
