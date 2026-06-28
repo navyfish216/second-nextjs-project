@@ -41,14 +41,27 @@ export default async function Page({ params, searchParams }: Props) {
   // 🚧: 本来であれば、カテゴリーに紐づく写真のみを取得しページネーションを施す
   const page = getPage(await searchParams);
 
+  const filteredPhotos = photos.filter((photo) => photo.categoryId === category.id);
+  const lines = 10;
+  const startIndex = (page -1) * lines
+  const endIndex = page * lines;
+  let photosToDisplay: Photo[] = [];
+  if (filteredPhotos.length > startIndex) {
+    for (let i = startIndex; i < endIndex; i++) {
+      if (i < filteredPhotos.length) {
+        photosToDisplay.push(filteredPhotos[i]);
+      }
+    }
+  }
+
   return (
     <div>
       <h1>
         カテゴリー「{category.label}」の「{page}」ページ目
       </h1>
       <ul>
-        {photos
-          .filter((photo) => photo.categoryId === category.id)
+        {photosToDisplay
+          //.filter((photo) => photo.categoryId === category.id)
           .map((photo) => (
             <li key={photo.id}>
               <Link href={`/photos/${photo.id}`}>{photo.title}</Link>
@@ -65,13 +78,15 @@ export default async function Page({ params, searchParams }: Props) {
             </Link>
           </li>
         )}
-        <li>
-          <Link
-            href={`/categories/${(await params).categoryName}?page=${page + 1}`}
-          >
-            次へ
-          </Link>
-        </li>
+        {filteredPhotos.length > endIndex && (
+          <li>
+            <Link
+              href={`/categories/${(await params).categoryName}?page=${page + 1}`}
+            >
+              次へ
+            </Link>
+          </li>
+        )}
       </ul>
     </div>
   );
