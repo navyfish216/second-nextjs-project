@@ -10,28 +10,28 @@ import styles from "./page.module.css";
 
 async function getCategory(categoryName: string) {
   const data: { category: Category } = await fetch(
-    `http://localhost:8080/api/categories/${categoryName}`
+    `http://localhost:8080/api/categories/${categoryName}`,
   ).then((res) => res.json());
   return data.category;
 }
 
 async function getPhotos() {
   const data: { photos: Photo[] } = await fetch(
-    "http://localhost:8080/api/photos"
+    "http://localhost:8080/api/photos",
   ).then((res) => res.json());
   return data.photos;
 }
 
 type Props = {
-    params: Promise<{categoryName: string}>;
-    searchParams: Promise<{[key: string]: string | string[] | undefined}>;
-}
+  params: Promise<{ categoryName: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
-export default async function Page({params, searchParams}: Props) {
-    // const unwrapParams = use(params);
-    // const unwrapSearchParams = use(searchParams);
-    // const page = typeof unwrapSearchParams.page === "string" ? unwrapSearchParams.page : "1";
-    // const router = useRouter();
+export default async function Page({ params, searchParams }: Props) {
+  // const unwrapParams = use(params);
+  // const unwrapSearchParams = use(searchParams);
+  // const page = typeof unwrapSearchParams.page === "string" ? unwrapSearchParams.page : "1";
+  // const router = useRouter();
 
   // ★: Promise.all を使用した並列データ取得
   const [category, photos] = await Promise.all([
@@ -58,13 +58,17 @@ export default async function Page({params, searchParams}: Props) {
       <ul className={styles.pagination}>
         {page !== 1 && (
           <li>
-            <Link href={`/categories/${(await params).categoryName}?page=${page - 1}`}>
+            <Link
+              href={`/categories/${(await params).categoryName}?page=${page - 1}`}
+            >
               前へ
             </Link>
           </li>
         )}
         <li>
-          <Link href={`/categories/${(await params).categoryName}?page=${page + 1}`}>
+          <Link
+            href={`/categories/${(await params).categoryName}?page=${page + 1}`}
+          >
             次へ
           </Link>
         </li>
