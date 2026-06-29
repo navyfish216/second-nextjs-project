@@ -1,27 +1,20 @@
 import "../styles/globals.css";
-import { Footer } from "./_components/Footer";
-import { Header } from "./_components/Header";
-import { Nav } from "./_components/Nav";
-import styles from "./layout.module.css";
+import { SITE_NAME } from "@/constants";
 
-export default function RootLayout({
+export const metadata = {
+  title: SITE_NAME,
+  description:
+    "「Photo Share」は、ユーザーが自由に写真を共有し、コメントや「いいね」を通じて交流することができるSNSアプリケーションです。",
+};
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // ★:全ての画面に適用される共通レイアウト
   return (
     <html lang="ja">
-      <body>
-        <div className={styles.container}>
-          <Header />
-          <div className={styles.content}>
-            <Nav />
-            <main className={styles.main}>{children}</main>
-          </div>
-          <Footer />
-        </div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

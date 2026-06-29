@@ -2,7 +2,7 @@
 //import { LikeButton } from "./LikeButton";
 import Link from "next/link";
 import type { Category, Photo } from "@/type";
-import { LikeButton } from "../../_components/LikeButton";
+import { LikeButton } from "../../../_components/LikeButton";
 import styles from "./page.module.css";
 
 async function getPhoto(photoId: string) {

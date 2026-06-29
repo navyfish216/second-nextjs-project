@@ -4,6 +4,7 @@
 //import { use } from "react";
 //import { LikeButton } from "../../_components/LikeButton";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import type { Category, Photo } from "@/type";
 import { getPage } from "@/utils";
 import styles from "./page.module.css";
@@ -40,6 +41,11 @@ export default async function Page({ params, searchParams }: Props) {
   ]);
   // 🚧: 本来であれば、カテゴリーに紐づく写真のみを取得しページネーションを施す
   const page = getPage(await searchParams);
+
+  // 11ページ以降は404扱いにする
+  if (page > 10) {
+    notFound();
+  }
 
   // カテゴリが一致する写真データを抽出
   const filteredPhotos = photos.filter((photo) => photo.categoryId === category.id);
