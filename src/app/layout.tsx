@@ -1,10 +1,11 @@
 import "../styles/globals.css";
+import type { Metadata } from "next";
 import { SITE_NAME } from "@/constants";
 
-export const metadata = {
+export const metadata:Metadata = {
   title: SITE_NAME,
   description:
-    "「Photo Share」は、ユーザーが自由に写真を共有し、コメントや「いいね」を通じて交流することができるSNSアプリケーションです。",
+    "(root)「Photo Share」は、ユーザーが自由に写真を共有し、コメントや「いいね」を通じて交流することができるSNSアプリケーションです。",
 };
 
 export default async function RootLayout({

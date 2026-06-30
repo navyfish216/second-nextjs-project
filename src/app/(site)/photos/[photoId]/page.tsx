@@ -2,6 +2,7 @@
 //import { LikeButton } from "./LikeButton";
 import Link from "next/link";
 import type { Category, Photo } from "@/type";
+import type { Metadata, ResolvingMetadata } from "next";
 import { LikeButton } from "../../../_components/LikeButton";
 import styles from "./page.module.css";
 
@@ -22,6 +23,18 @@ async function getCategory(categoryId: string) {
 type Props = {
   params: Promise<{ photoId: string }>;
 };
+
+export async function generateMetadata(
+  { params }: Props, 
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const photo = await getPhoto((await params).photoId);
+  const {title, description} = await parent;
+  return {
+    title: `投稿写真「${photo.title}」 | ${title?.absolute}`,
+    description: `${description} / ${photo.description}`,
+  };
+}
 
 export default async function Page({ params }: Props) {
   const photo = await getPhoto((await params).photoId);

@@ -1,5 +1,6 @@
 // 「3-2-2-2.Route Groups 専用のレイアウトをネストする」で解説されている「Layout A」ファイル
 
+import type { Metadata } from "next";
 import { Footer } from "../_components/Footer";
 import { Header } from "../_components/Header";
 import { Nav } from "../_components/Nav";
@@ -7,6 +8,11 @@ import styles from "./layout.module.css";
 
 type Props = {
   children: React.ReactNode;
+};
+
+export const metadata: Metadata = {
+  title: "(site)Photo Share",
+  description: "(site)「Photo Share」は、ユーザーが自由に写真を共有し、コメントや「いいね」を通じて交流することができるSNSアプリケーションです。",
 };
 
 // 動的要素が入り混り構成される(site)配下で全適用されるレイアウト
