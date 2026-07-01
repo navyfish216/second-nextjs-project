@@ -2,11 +2,24 @@
 
 import { useState } from "react";
 
+async function getPhotos(id: string) {
+  const data: {liked: boolean} = await fetch(`/api/photos/${id}/like`, {
+    method: "POST",
+  }).then((res) => res.json());
+  return data.liked;
+}
+
 export function LikeButton({ id }: { id: string }) {
   const [likes, setLikes] = useState(0);
   //const [liked, setLiked] = useState(false);
 
-  const handleLike = () => {
+  const handleLike = async () => {
+    // const liked: boolean = await getPhotos(id);
+    const data: {liked: boolean} = await fetch(`/api/photos/${id}/like`, {
+      method: "POST",
+    }).then((res) => res.json());
+    console.log(`photoId ${id} liked: ${data.liked}`);
+
     if (likes > 0) {
       console.log(`LikeButton.id ${id} が「いいね」が追加されました`);
     } else {
