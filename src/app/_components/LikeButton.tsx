@@ -1,23 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import { postLike } from "@/services/postLike";
+import type {Like} from "../../services/type";
 
-async function getPhotos(id: string) {
-  const data: {liked: boolean} = await fetch(`/api/photos/${id}/like`, {
-    method: "POST",
-  }).then((res) => res.json());
-  return data.liked;
-}
+// async function postLike(id: string) {
+//   const data: {liked: boolean} = await fetch(`/api/photos/${id}/like`, {
+//     method: "POST",
+//   }).then((res) => res.json());
+//   return data;
+// }
 
 export function LikeButton({ id }: { id: string }) {
   const [likes, setLikes] = useState(0);
   //const [liked, setLiked] = useState(false);
 
   const handleLike = async () => {
-    // const liked: boolean = await getPhotos(id);
-    const data: {liked: boolean} = await fetch(`/api/photos/${id}/like`, {
-      method: "POST",
-    }).then((res) => res.json());
+    const data: Like = await postLike(id);
+    // const data: {liked: boolean} = await fetch(`/api/photos/${id}/like`, {
+    //   method: "POST",
+    // }).then((res) => res.json());
     console.log(`photoId ${id} liked: ${data.liked}`);
 
     if (likes > 0) {
