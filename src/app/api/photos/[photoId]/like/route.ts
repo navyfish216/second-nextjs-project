@@ -1,3 +1,5 @@
+import "server-only";
+
 export async function POST(
   _: Request,
   {params}: {params: Promise<{photoId: string}>}
