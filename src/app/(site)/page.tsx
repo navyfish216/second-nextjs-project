@@ -13,7 +13,7 @@ async function getPhotos() {
 export default async function Page() {
   const photos = await getPhotos(); // <- データを取得
   return (
-    <div>
+    <div className={styles.container}>
       <h1>トップ画面</h1>
       <ul>
         {photos.map(({ id, title }) => (

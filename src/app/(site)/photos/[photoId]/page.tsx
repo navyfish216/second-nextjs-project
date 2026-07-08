@@ -50,6 +50,10 @@ export default async function Page({ params }: Props) {
             <td>{photo.description}</td>
           </tr>
           <tr>
+            <th>写真</th>
+            <td><img src={photo.imageUrl} width="640" height="480" alt={photo.title}></img></td>
+          </tr>
+          <tr>
             <th>カテゴリー</th>
             <td>
               <Link href={`/categories/${category.name}`}>
