@@ -38,7 +38,7 @@ export async function generateMetadata(
 
 export default async function Page({ params }: Props) {
   const photo = await getPhoto((await params).photoId);
-  const category = await getCategory(photo.categoryId);
+  // const category = await getCategory(photo.categoryId);
   //const unwrapParams = use(params);
   return (
     <div>
@@ -56,8 +56,8 @@ export default async function Page({ params }: Props) {
           <tr>
             <th>カテゴリー</th>
             <td>
-              <Link href={`/categories/${category.name}`}>
-                {category.label}
+              <Link href={`/categories/${photo.category.name}`}>
+                {photo.category.label}
               </Link>
             </td>
           </tr>
