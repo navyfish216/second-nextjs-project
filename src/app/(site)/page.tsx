@@ -14,10 +14,10 @@ export default async function Page() {
   const photos = await getPhotos(); // <- データを取得
   return (
     <div className={styles.container}>
-      <h1>トップ画面</h1>
-      <ul>
+      <h2>トップ画面</h2>
+      <ul className={styles.ul}>
         {photos.map(({ id, title }) => (
-          <li key={id}>
+          <li key={id} className={styles.list}>
             <Link href={`/photos/${id}`}>{title}</Link>
           </li>
         ))}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Category } from "@/type";
+import styles from "../page.module.css";
 
 async function getCategories() {
   const data: { categories: Category[] } = await fetch(
@@ -17,10 +18,10 @@ export default async function Page() {
   const categories = await getCategories();
   return (
     <div>
-      <h1>カテゴリー一覧画面</h1>
-      <ul>
+      <h2>カテゴリー一覧画面</h2>
+      <ul className={styles.ul}>
         {categories.map(({ id, label, name }) => (
-          <li key={id}>
+          <li key={id} className={styles.list}>
             <Link href={`/categories/${name}`}>{label}</Link>
           </li>
         ))}

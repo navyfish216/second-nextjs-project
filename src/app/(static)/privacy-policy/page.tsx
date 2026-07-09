@@ -1,3 +1,5 @@
+import styles from "../layout.module.css";
+
 type Props = {
   searchParams: Promise<{[key: string]: string | string[] | undefined}>;
 }
@@ -11,8 +13,8 @@ export default async function Page({searchParams}: Props) {
   }
 
   return (
-    <div>
-      <h1>利用規約</h1>
+    <div className={styles.container_sub}>
+      <h2>利用規約</h2>
     </div>
   );
 }

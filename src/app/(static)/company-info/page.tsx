@@ -1,12 +1,13 @@
 import { cookies } from "next/headers";
+import styles from "../layout.module.css";
 
 export default function Page() {
   //const cookieStore = cookies();
   //console.log(`company-info.cookieStore: ${cookieStore}`);
 
   return (
-    <div>
-      <h1>企業概要</h1>
+    <div className={styles.container_sub}>
+      <h2>企業概要</h2>
     </div>
   );
 }

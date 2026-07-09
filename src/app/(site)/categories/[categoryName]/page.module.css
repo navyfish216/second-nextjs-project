@@ -1,3 +1,15 @@
 .pagination {
   border-top: 1px solid #000;
+  padding: 12px;
+  margin: 12px;
+}
+
+.ul {
+  padding: 12px;
+  margin: 12px;
+}
+
+.list {
+  line-height: 28px;
+  /* height: 28px; */
 }

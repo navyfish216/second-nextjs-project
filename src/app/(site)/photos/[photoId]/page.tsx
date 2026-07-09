@@ -42,7 +42,7 @@ export default async function Page({ params }: Props) {
   //const unwrapParams = use(params);
   return (
     <div>
-      <h1>写真ID「{photo.title}」の詳細画面</h1>
+      <h2>写真ID「{photo.title}」の詳細画面</h2>
       <table className={styles.table}>
         <tbody>
           <tr>

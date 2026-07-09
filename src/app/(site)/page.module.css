@@ -1,5 +1,15 @@
 .container {
   flex-grow: 1;
   padding: 24px;
-  background-color: #e0e3e9;
+  /* background-color: #e0e3e9; */
+}
+
+.ul {
+  padding: 12px;
+  margin: 12px;
+}
+
+.list {
+  line-height: 28px;
+  /* height: 28px; */
 }
