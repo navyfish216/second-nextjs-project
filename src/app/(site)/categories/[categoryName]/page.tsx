@@ -71,15 +71,6 @@ export default async function Page({ params, searchParams }: Props) {
       <h2>
         カテゴリー「{category.label}」の「{page}」ページ目
       </h2>
-      {/* <ul className={styles.ul}>
-        {photosToDisplay
-          //.filter((photo) => photo.categoryId === category.id)
-          .map((photo) => (
-            <li key={photo.id} className={styles.list}>
-              <Link href={`/photos/${photo.id}`}>{photo.title}</Link>
-            </li>
-          ))}
-      </ul> */}
       <div className={styles.wrapper}>
         {photosToDisplay
           //.filter((photo) => photo.categoryId === category.id)

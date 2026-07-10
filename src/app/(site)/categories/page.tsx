@@ -19,18 +19,6 @@ export default async function Page() {
   return (
     <div>
       <h2>カテゴリー一覧画面</h2>
-      {/* <ul className={styles.ul}>
-        {categories.map(({ id, label, name, photos }) => (
-          <li key={id} className={styles.list}>
-            <Link href={`/categories/${name}`}>{label}</Link>
-            {photos.length > 0 && (
-              <div>
-                <img src={photos[0].imageUrl} width="160" height="120" alt={photos[0].title}></img>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul> */}
       <div className={styles.wrapper}>
         {categories.map(({ id, label, name, photos }) => (
           <div key={id}>

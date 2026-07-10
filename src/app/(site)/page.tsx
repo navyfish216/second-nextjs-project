@@ -15,13 +15,6 @@ export default async function Page() {
   return (
     <div className={styles.container}>
       <h2>トップ画面</h2>
-      {/* <ul className={styles.ul}>
-        {photos.map(({ id, title }) => (
-          <li key={id} className={styles.list}>
-            <Link href={`/photos/${id}`}>{title}</Link>
-          </li>
-        ))}
-      </ul> */}
       <div className={styles.wrapper}>
         {photos.map(({ id, title, imageUrl }) => (
           <div key={id}>
