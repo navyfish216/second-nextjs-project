@@ -5,12 +5,12 @@
 //import { LikeButton } from "../../_components/LikeButton";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { Category, Photo } from "@/type";
+import type { CategoryWithPhotos, Photo } from "@/type";
 import { getPage } from "@/utils";
 import styles from "./page.module.css";
 
 async function getCategory(categoryName: string) {
-  const data: { category: Category } = await fetch(
+  const data: { category: CategoryWithPhotos } = await fetch(
     `http://localhost:8080/api/categories/${categoryName}`,
   ).then((res) => res.json());
   return data.category;

@@ -5,6 +5,9 @@ export type Photo = {
   imageUrl: string;
   authorId: string;
   categoryId: string;
+};
+
+export type PhotoWithCategory = Photo & {
   category: Category;
 };
 
@@ -15,3 +18,7 @@ export type Category = {
   description: string;
   imageUrl: string;
 };
+
+export type CategoryWithPhotos = Category & {
+  photos: Photo[];
+}
