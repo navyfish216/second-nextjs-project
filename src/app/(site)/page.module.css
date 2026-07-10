@@ -13,3 +13,10 @@
   line-height: 28px;
   /* height: 28px; */
 }
+
+.wrapper {
+  display: grid;
+  /* grid-template-columns: 200px 200px 200px; */
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 10px; /* 列と行の間隔 */
+}
