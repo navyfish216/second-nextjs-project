@@ -71,7 +71,7 @@ export default async function Page({ params, searchParams }: Props) {
       <h2>
         カテゴリー「{category.label}」の「{page}」ページ目
       </h2>
-      <ul className={styles.ul}>
+      {/* <ul className={styles.ul}>
         {photosToDisplay
           //.filter((photo) => photo.categoryId === category.id)
           .map((photo) => (
@@ -79,7 +79,21 @@ export default async function Page({ params, searchParams }: Props) {
               <Link href={`/photos/${photo.id}`}>{photo.title}</Link>
             </li>
           ))}
-      </ul>
+      </ul> */}
+      <div className={styles.wrapper}>
+        {photosToDisplay
+          //.filter((photo) => photo.categoryId === category.id)
+          .map((photo) => (
+            <div key={photo.id}>
+              <Link href={`/photos/${photo.id}`}>
+                {photo.title}
+                <div>
+                  <img src={photo.imageUrl} width="320" height="240" alt={photo.title}></img>
+                </div>
+              </Link>
+            </div>
+          ))}
+      </div>
       <ul className={styles.pagination}>
         {/* 1ページ目以外の場合に前へリンク表示 */}
         {page !== 1 && (

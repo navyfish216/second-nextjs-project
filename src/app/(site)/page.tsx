@@ -7,7 +7,7 @@ async function getPhotos() {
     "http://localhost:8080/api/photos", 
     {cache: "no-store"}
   ).then((res) => res.json());
-  return data.photos.map(({ id, title }) => ({ id, title }));
+  return data.photos.map(({ id, title, imageUrl }) => ({ id, title, imageUrl }));
 }
 
 export default async function Page() {
@@ -15,13 +15,25 @@ export default async function Page() {
   return (
     <div className={styles.container}>
       <h2>トップ画面</h2>
-      <ul className={styles.ul}>
+      {/* <ul className={styles.ul}>
         {photos.map(({ id, title }) => (
           <li key={id} className={styles.list}>
             <Link href={`/photos/${id}`}>{title}</Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
+      <div className={styles.wrapper}>
+        {photos.map(({ id, title, imageUrl }) => (
+          <div key={id}>
+            <Link href={`/photos/${id}`}>
+              {title}
+              <div>
+                <img src={imageUrl} width="320" height="240" alt={title}></img>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
