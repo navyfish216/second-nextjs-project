@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { postLike } from "@/services/postLike";
 import type {Like} from "../../services/type";
+import styles from "./likebutton.module.css";
 
 // async function postLike(id: string) {
 //   const data: {liked: boolean} = await fetch(`/api/photos/${id}/like`, {
@@ -42,19 +43,20 @@ export function LikeButton({ id }: { id: string }) {
   }
 
   return (
-    <div>
+    <div className={styles.field}>
         <div>
-          <button onClick={handleLike}>
-            {likes > 0 ? "❤️" : "🤍"} いいね {likes > 0 && `(${likes})`}
+          <button onClick={handleLike} className={likes == 0 ? styles.likebutton : styles.likebutton_liked}>
+            {/* {likes > 0 ? "❤️" : "🤍"} いいね {likes > 0 && `(${likes})`} */}
+            {likes > 0 ? "🤍" : "❤️"} {`${likes}`}
           </button>
         </div>
-      {likes > 0 &&
-        <div>
-          <button onClick={handleCancelLike}>
-            いいねをやめる
-          </button>
-        </div>
-      }
+        {likes > 0 &&
+          <div>
+            <button onClick={handleCancelLike} className={styles.likebutton}>
+              いいねをやめる
+            </button>
+          </div>
+        }
     </div>
   );
 }
