@@ -4,7 +4,7 @@ import styles from "./style.module.css";
 export function Footer() {
   return (
     <footer className={styles.footer}>
-      <ul>
+      <ul className={styles.footer_ul}>
         <li>
           <Link href="/privacy-policy">プライバシー・ポリシー</Link>
         </li>
