@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { postLike } from "@/services/postLike";
-import type {Like} from "../../services/type";
-import styles from "./likebutton.module.css";
+import type {Like} from "../../../services/type";
+import styles from "./style.module.css";
 
 // async function postLike(id: string) {
 //   const data: {liked: boolean} = await fetch(`/api/photos/${id}/like`, {

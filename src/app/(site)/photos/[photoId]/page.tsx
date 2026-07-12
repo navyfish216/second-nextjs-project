@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { CategoryWithPhotos, PhotoWithCategory } from "@/type";
 import type { Metadata, ResolvingMetadata } from "next";
-import { LikeButton } from "../../../_components/LikeButton";
+import { LikeButton } from "@/app/_components/LikeButton";
 import styles from "./page.module.css";
 
 async function getPhoto(photoId: string) {
