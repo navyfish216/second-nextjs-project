@@ -7,3 +7,7 @@
 .nav [aria-current="page"] {
   color: orangered;
 }
+
+.nav_ul {
+  list-style: none;
+}

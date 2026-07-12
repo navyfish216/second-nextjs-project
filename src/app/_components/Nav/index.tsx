@@ -18,7 +18,7 @@ export function Nav() {
   const pathName = usePathname();
   return (
     <nav className={styles.nav}>
-      <ul>
+      <ul className={styles.nav_ul}>
         <li>
           {/* <Link href="/"> */}
           <Link href="/" {...getAriaCurrent(pathName === "/")}>
@@ -35,7 +35,7 @@ export function Nav() {
           </Link>
         </li>
       </ul>
-      <IconButton onClickFunction={openModal}>写真を投稿する</IconButton>
+      {/* <IconButton onClickFunction={openModal}>写真を投稿する</IconButton> */}
     </nav>
   );
 }
