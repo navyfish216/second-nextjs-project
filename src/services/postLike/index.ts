@@ -1,6 +1,6 @@
 import type {Like} from "../type";
 
-export async function postLike(id: string) {
+export async function postLike(id: string): Promise<Like> {
   const like: Like = await fetch(`/api/photos/${id}/like`, {
     method: "POST",
   }).then((res) => res.json());

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { CategoryWithPhotos, PhotoWithCategory } from "@/type";
 import type { Metadata, ResolvingMetadata } from "next";
+import { getLike } from "@/services/getLike";
 import { LikeButton } from "@/app/_components/LikeButton";
 import styles from "./page.module.css";
 
@@ -38,6 +39,8 @@ export async function generateMetadata(
 
 export default async function Page({ params }: Props) {
   const photo = await getPhoto((await params).photoId);
+  const userId = "dummy";
+  const like = await getLike({userId: userId, photoId: (await params).photoId});
   // const category = await getCategory(photo.categoryId);
   //const unwrapParams = use(params);
   return (
@@ -63,7 +66,7 @@ export default async function Page({ params }: Props) {
           </tr>
         </tbody>
       </table>
-      <LikeButton id={(await params).photoId} />
+      <LikeButton id={(await params).photoId} like={like}/>
     </div>
   );
 }
