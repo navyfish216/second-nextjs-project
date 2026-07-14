@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { postLike } from "@/services/postLike";
-import type {Like} from "../../../services/type";
+import type { Like } from "@/type";
 import styles from "./style.module.css";
 
 export function LikeButton({ photoId, userId, like }: { photoId: string, userId: string, like: Like }) {

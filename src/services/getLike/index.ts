@@ -1,4 +1,4 @@
-import type {Like} from "../type";
+import type { Like } from "@/type";
 
 export async function getLike({
   userId,

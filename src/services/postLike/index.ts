@@ -1,4 +1,4 @@
-import type {Like} from "../type";
+import type { Like } from "@/type";
 
 export async function postLike(photoId: string, userId: string): Promise<Like> {
   const body: string = JSON.stringify({userId: userId});

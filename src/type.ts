@@ -22,3 +22,8 @@ export type Category = {
 export type CategoryWithPhotos = Category & {
   photos: Photo[];
 }
+
+export type Like = {
+  liked: boolean;
+  likes: number;
+}
