@@ -66,7 +66,7 @@ export default async function Page({ params }: Props) {
           </tr>
         </tbody>
       </table>
-      <LikeButton id={(await params).photoId} like={like}/>
+      <LikeButton photoId={(await params).photoId} userId={userId} like={like}/>
     </div>
   );
 }

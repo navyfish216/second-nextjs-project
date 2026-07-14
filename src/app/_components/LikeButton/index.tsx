@@ -2,19 +2,18 @@
 
 import { useState } from "react";
 import { postLike } from "@/services/postLike";
-import type {GetLike, Like} from "../../../services/type";
+import type {Like} from "../../../services/type";
 import styles from "./style.module.css";
 
-export function LikeButton({ id, like }: { id: string, like: GetLike }) {
-  // const userId = "dummy";
+export function LikeButton({ photoId, userId, like }: { photoId: string, userId: string, like: Like }) {
   let likes = like.likes;
   let liked = like.liked;
   const [useLikes, setLikes] = useState(likes);
   const [useLiked, setLiked] = useState(liked);
 
   const handleLike = async () => {
-    const data: Like = await postLike(id);
-    console.log(`photoId ${id} liked: ${data.liked}`);
+    const data: Like = await postLike(photoId, userId);
+    console.log(`photoId ${photoId} liked: ${data.liked}`);
 
     setLiked(!useLiked);
     
