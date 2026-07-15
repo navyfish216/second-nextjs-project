@@ -12,16 +12,10 @@ export function LikeButton({ photoId, userId, like }: { photoId: string, userId:
   const [useLiked, setLiked] = useState(liked);
 
   const handleLike = async () => {
-    const data: Like = await postLike(photoId, userId);
-    console.log(`photoId ${photoId} liked: ${data.liked}`);
-
-    setLiked(!useLiked);
-    
-    if (useLiked) {
-      setLikes(useLikes - 1);
-    } else {
-      setLikes(useLikes + 1);
-    }
+    const like: Like = await postLike(photoId, userId);
+    console.log(`photoId ${photoId} liked: ${like.liked}, likes: ${like.likes}`);
+    setLiked(like.liked);
+    setLikes(like.likes);
   };
 
   return (
