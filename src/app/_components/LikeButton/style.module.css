@@ -46,3 +46,23 @@
   border: 1px solid #666666;
   /* box-shadow: rgba(100, 100, 111, 0.5)0px 7px 29px 0px; */
 }
+
+.icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 8px;
+  color: #f12b2b
+}
+
+.icon__liked {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 8px;
+  color: #ffffff
+}
+
+.span__likes {
+  vertical-align: middle;
+}
