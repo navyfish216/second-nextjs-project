@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.likebutton {
+.like__button {
   margin: 10px;
   display: inline-block;
   font-size: 16px;
@@ -17,7 +17,7 @@
   transition: all 0.2s;
 }
 
-.likebutton_liked {
+.like__button__liked {
   margin: 10px;
   display: inline-block;
   font-size: 16px;
@@ -32,7 +32,7 @@
   transition: all 0.2s;
 }
 
-.likebutton:hover {
+.like__button:hover {
   margin: 10px;
   /* background: #1eb0d1; */
   background: #dddddd;
@@ -40,7 +40,7 @@
   /* box-shadow: rgba(100, 100, 111, 0.5)0px 7px 29px 0px; */
 }
 
-.likebutton_liked:hover {
+.like__button__liked:hover {
   margin: 10px;
   background: #e94677;
   border: 1px solid #666666;

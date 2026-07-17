@@ -17,7 +17,7 @@ export function LikeButton({ photoId, userId, like }: { photoId: string, userId:
   return (
     <div className={styles.field}>
         <div>
-          <button onClick={handleLike} className={likeState.liked ? styles.likebutton_liked : styles.likebutton}>
+          <button onClick={handleLike} className={likeState.liked ? styles.like__button__liked : styles.like__button}>
             {likeState.liked ? "🤍" : "❤️"} {`${likeState.likes}`}
           </button>
         </div>
