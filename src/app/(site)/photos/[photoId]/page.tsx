@@ -40,9 +40,7 @@ export async function generateMetadata(
 export default async function Page({ params }: Props) {
   const photo = await getPhoto((await params).photoId);
   const userId = "dummy";
-  const like = await getLike({userId: userId, photoId: (await params).photoId});
   // const category = await getCategory(photo.categoryId);
-  //const unwrapParams = use(params);
   return (
     <div>
       <h2>{photo.title}</h2>
@@ -66,7 +64,7 @@ export default async function Page({ params }: Props) {
           </tr>
         </tbody>
       </table>
-      <LikeButton photoId={(await params).photoId} userId={userId} like={like}/>
+      <LikeButton photoId={(await params).photoId} userId={userId} />
     </div>
   );
 }
