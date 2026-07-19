@@ -52,7 +52,11 @@
   height: 16px;
   vertical-align: middle;
   margin-right: 8px;
-  color: #f12b2b
+  padding-left: 16px;
+  mask: no-repeat center;
+  background-color: #f12b2b;
+  mask-image: url('./images/heart-fill.svg');
+  -webkit-mask-image: url('./images/heart-fill.svg');
 }
 
 .icon__liked {
@@ -60,7 +64,11 @@
   height: 16px;
   vertical-align: middle;
   margin-right: 8px;
-  color: #ffffff
+  padding-left: 16px;
+  mask: no-repeat center;
+  background-color: #ffffff;
+  mask-image: url('./images/heart-fill.svg');
+  -webkit-mask-image: url('./images/heart-fill.svg');
 }
 
 .span__likes {
