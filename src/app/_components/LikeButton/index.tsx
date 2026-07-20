@@ -1,6 +1,7 @@
 "use client";
 
 import useSWR from "swr";
+import clsx from 'clsx';
 import { postLike } from "@/services/postLike";
 import type { Like } from "@/type";
 import styles from "./style.module.css";
@@ -23,9 +24,14 @@ export function LikeButton({ photoId, userId }: { photoId: string, userId: strin
   if (isLoading) return (
     <div className={styles.field}>
       <div>
-        <button className={styles.like__button}>
-          <span className={styles.icon} />
-          <span className={styles.span__likes}>...</span>
+        <button className={clsx(
+          styles.like__button__common, 
+          styles.like__button__normal)}>
+          <span className={clsx(
+            styles.icon__common, 
+            styles.icon__img, 
+            styles.icon__color__normal)} />
+          <span className={styles.span__likes} />
         </button>
       </div>
     </div>
@@ -34,8 +40,13 @@ export function LikeButton({ photoId, userId }: { photoId: string, userId: strin
   return (
     <div className={styles.field}>
       <div>
-        <button onClick={handleLike} className={data?.liked ? styles.like__button__liked : styles.like__button}>
-          <span className={data?.liked ? styles.icon__liked : styles.icon} />
+        <button onClick={handleLike} className={clsx(
+          styles.like__button__common,
+          data?.liked ? styles.like__button__liked : styles.like__button__normal)}>
+          <span className={clsx(
+            styles.icon__common, 
+            styles.icon__img, 
+            data?.liked ? styles.icon__color_liked : styles.icon__color__normal)} />
           <span className={styles.span__likes}>{`${data?.likes}`}</span>
         </button>
       </div>
