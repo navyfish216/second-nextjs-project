@@ -16,8 +16,7 @@ export function LikeButton({ photoId, userId }: { photoId: string, userId: strin
   const {data, isLoading, mutate} = useSWR<Like>(url, fetcher);
 
   const handleLike = async () => {
-    const like: Like = await postLike(photoId, userId);
-    console.log(`photoId ${photoId} liked: ${like.liked}, likes: ${like.likes}`);
+    await postLike(photoId, userId);
     mutate();
   };
 
