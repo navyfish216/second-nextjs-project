@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import useSWR from "swr";
 import clsx from 'clsx';
 import { postLike } from "@/services/postLike";
@@ -10,14 +11,18 @@ const fetcher = async (url: string): Promise<Like> => await fetch(url).then(res 
 
 export function LikeButton({ photoId, userId }: { photoId: string, userId: string }) {
 
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const searchParams = new URLSearchParams({ userId });
   const url: string = `http://localhost:8080/api/photos/${photoId}/like?${searchParams}`;
 
   const {data, isLoading, mutate} = useSWR<Like>(url, fetcher);
 
   const handleLike = async () => {
+    setIsProcessing(true);
     await postLike(photoId, userId);
     mutate();
+    setIsProcessing(false);
   };
 
   if (isLoading) return (
@@ -39,7 +44,7 @@ export function LikeButton({ photoId, userId }: { photoId: string, userId: strin
   return (
     <div className={styles.field}>
       <div>
-        <button onClick={handleLike} className={clsx(
+        <button onClick={handleLike} disabled={isProcessing} className={clsx(
           styles.like__button__common,
           data?.liked ? styles.like__button__liked : styles.like__button__normal)}>
           <span className={clsx(
