@@ -35,7 +35,7 @@ export function LikeButton({ photoId, userId }: { photoId: string, userId: strin
             styles.icon__common, 
             styles.icon__img, 
             styles.icon__color__normal)} />
-          <span className={styles.span__likes} />
+          <span className={clsx(styles.span__likes, styles.mgr__9)} />
         </button>
       </div>
     </div>
