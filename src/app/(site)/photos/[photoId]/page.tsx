@@ -1,9 +1,9 @@
 //import { use } from "react";
 //import { LikeButton } from "./LikeButton";
+import { headers } from 'next/headers';
 import Link from "next/link";
 import type { CategoryWithPhotos, PhotoWithCategory } from "@/type";
 import type { Metadata, ResolvingMetadata } from "next";
-import { getLike } from "@/services/getLike";
 import { LikeButton } from "@/app/_components/LikeButton";
 import styles from "./page.module.css";
 
@@ -39,8 +39,13 @@ export async function generateMetadata(
 
 export default async function Page({ params }: Props) {
   const photo = await getPhoto((await params).photoId);
-  const userId = "dummy";
-  // const category = await getCategory(photo.categoryId);
+  
+  // ヘッダーからユーザーIDを取得
+  const headersList = await headers();
+  let userId = headersList.get('X-Custom-User');
+  userId = !!userId ? userId : "";
+  console.log(`X-Custom-User: ${userId}`);
+
   return (
     <div>
       <h2>{photo.title}</h2>
