@@ -1,18 +1,6 @@
 import Link from "next/link";
-import type { CategoryWithPhotos } from "@/type";
+import getCategories from "@/services/category/getCategories";
 import styles from "../page.module.css";
-
-async function getCategories() {
-  const data: { categories: CategoryWithPhotos[] } = await fetch(
-    `http://localhost:8080/api/categories`,
-    {
-      next: {
-        revalidate: 15
-      },
-    }
-  ).then((res) => res.json());
-  return data.categories;
-}
 
 export default async function Page() {
   const categories = await getCategories();

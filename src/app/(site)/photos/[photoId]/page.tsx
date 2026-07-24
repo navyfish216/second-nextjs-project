@@ -1,25 +1,10 @@
 //import { use } from "react";
-//import { LikeButton } from "./LikeButton";
 import { headers } from 'next/headers';
 import Link from "next/link";
-import type { CategoryWithPhotos, PhotoWithCategory } from "@/type";
 import type { Metadata, ResolvingMetadata } from "next";
+import getPhoto from '@/services/photo/getPhoto';
 import { LikeButton } from "@/app/_components/LikeButton";
 import styles from "./page.module.css";
-
-async function getPhoto(photoId: string) {
-  const data: { photo: PhotoWithCategory } = await fetch(
-    `http://localhost:8080/api/photos/${photoId}`,
-  ).then((res) => res.json());
-  return data.photo;
-}
-
-async function getCategory(categoryId: string) {
-  const data: { category: CategoryWithPhotos } = await fetch(
-    `http://localhost:8080/api/categories/id/${categoryId}`,
-  ).then((res) => res.json());
-  return data.category;
-}
 
 type Props = {
   params: Promise<{ photoId: string }>;

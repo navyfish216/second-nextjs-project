@@ -1,17 +1,10 @@
 import Link from "next/link";
-import type { Photo } from "@/type";
+import getPhotos from "@/services/photo/getPhotos";
 import styles from "./page.module.css";
 
-async function getPhotos() {
-  const data: { photos: Photo[] } = await fetch(
-    "http://localhost:8080/api/photos", 
-    {cache: "no-store"}
-  ).then((res) => res.json());
-  return data.photos.map(({ id, title, imageUrl }) => ({ id, title, imageUrl }));
-}
-
 export default async function Page() {
-  const photos = await getPhotos(); // <- データを取得
+  // データを取得
+  const photos = (await getPhotos()).map(({ id, title, imageUrl }) => ({ id, title, imageUrl }));
   return (
     <div className={styles.container}>
       <h2>トップ画面</h2>

@@ -1,27 +1,11 @@
-// "use client";
 
-//import { useRouter } from "next/navigation";
-//import { use } from "react";
-//import { LikeButton } from "../../_components/LikeButton";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { CategoryWithPhotos, Photo } from "@/type";
+import type { Photo } from "@/type";
+import getCategory from "@/services/category/getCategory";
+import getPhotos from "@/services/photo/getPhotos";
 import { getPage } from "@/utils";
 import styles from "./page.module.css";
-
-async function getCategory(categoryName: string) {
-  const data: { category: CategoryWithPhotos } = await fetch(
-    `http://localhost:8080/api/categories/${categoryName}`,
-  ).then((res) => res.json());
-  return data.category;
-}
-
-async function getPhotos() {
-  const data: { photos: Photo[] } = await fetch(
-    "http://localhost:8080/api/photos",
-  ).then((res) => res.json());
-  return data.photos;
-}
 
 type Props = {
   params: Promise<{ categoryName: string }>;
@@ -29,10 +13,6 @@ type Props = {
 };
 
 export default async function Page({ params, searchParams }: Props) {
-  // const unwrapParams = use(params);
-  // const unwrapSearchParams = use(searchParams);
-  // const page = typeof unwrapSearchParams.page === "string" ? unwrapSearchParams.page : "1";
-  // const router = useRouter();
 
   // ★: Promise.all を使用した並列データ取得
   const [category, photos] = await Promise.all([

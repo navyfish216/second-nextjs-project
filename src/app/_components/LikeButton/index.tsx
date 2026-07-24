@@ -3,7 +3,7 @@
 import { useState } from "react";
 import useSWR from "swr";
 import clsx from 'clsx';
-import { postLike } from "@/services/postLike";
+import { postLike } from "@/services/like/postLike";
 import type { Like } from "@/type";
 import styles from "./style.module.css";
 
