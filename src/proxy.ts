@@ -18,7 +18,16 @@ function formatDateToYYYYMMDD_HH24(date: Date): string {
 
 export function proxy(request: NextRequest) {
   const response = NextResponse.next();
-  
+  const session = request.cookies.get('session');
+
+  // cookieに認証トークン存在しない場合は設定（有効期間：10分）
+  let authToken = request.cookies.get('auth-token')?.value;
+  if (!authToken) {
+    console.log("proxy.ts auth-tokenを設定");
+    authToken = 'dummy-token';
+    response.cookies.set('auth-token', authToken, { expires: 1/144 });
+  }
+
   // ユーザーIDをヘッダー追加
   response.headers.set('X-Custom-User', 'dummy');
 

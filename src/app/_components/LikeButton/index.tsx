@@ -3,6 +3,7 @@
 import { useState } from "react";
 import useSWR from "swr";
 import clsx from 'clsx';
+import Cookies from 'js-cookie';
 import { postLike } from "@/services/like/postLike";
 import type { Like } from "@/type";
 import styles from "./style.module.css";
@@ -11,11 +12,14 @@ const fetcher = async (url: string): Promise<Like> => await fetch(url).then(res 
 
 export function LikeButton({ photoId, userId }: { photoId: string, userId: string }) {
 
+  // cookieから認証トークンを取得
+  const token = Cookies.get('auth-token');
+  console.log(`LikeButton token: ${token}`);
+
   const [isProcessing, setIsProcessing] = useState(false);
 
   const searchParams = new URLSearchParams({ userId });
   const url: string = `http://localhost:8080/api/photos/${photoId}/like?${searchParams}`;
-
   const {data, isLoading, mutate} = useSWR<Like>(url, fetcher);
 
   const handleLike = async () => {
