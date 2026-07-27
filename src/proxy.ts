@@ -12,7 +12,6 @@ function formatDateToYYYYMMDD_HH24(date: Date): string {
     minute: '2-digit'
   });
 
-  console.log(formatter.format(date).replace(/\//g, '').replace(/\s/g, '_').replace(/:/g, ''));
   return formatter.format(date).replace(/\//g, '').replace(/\s/g, '_').replace(/:/g, '');    
 }
 
