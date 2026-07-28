@@ -3,28 +3,27 @@
 import { useState } from "react";
 import useSWR from "swr";
 import clsx from 'clsx';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import { postLike } from "@/services/like/postLike";
 import type { Like } from "@/type";
 import styles from "./style.module.css";
 
 const fetcher = async (url: string): Promise<Like> => await fetch(url).then(res => res.json());
 
-export function LikeButton({ photoId, userId }: { photoId: string, userId: string }) {
+export function LikeButton({ photoId }: { photoId: string }) {
 
   // cookieから認証トークンを取得
-  const token = Cookies.get('auth-token');
-  console.log(`LikeButton token: ${token}`);
+  // const token = Cookies.get('auth-token');
+  // console.log(`LikeButton token: ${token}`);
 
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const searchParams = new URLSearchParams({ userId });
-  const url: string = `http://localhost:8080/api/photos/${photoId}/like?${searchParams}`;
+  const url: string = `/api/photos/${photoId}/like`;
   const {data, isLoading, mutate} = useSWR<Like>(url, fetcher);
 
   const handleLike = async () => {
     setIsProcessing(true);
-    await postLike(photoId, userId);
+    await postLike(photoId);
     mutate();
     setIsProcessing(false);
   };

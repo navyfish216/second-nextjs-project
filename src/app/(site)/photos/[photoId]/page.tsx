@@ -31,10 +31,10 @@ export default async function Page({ params }: Props) {
   console.log(`photos/[photoId]/Page token: ${token}`);
 
   // ヘッダーからユーザーIDを取得
-  const headersList = await headers();
-  let userId = headersList.get('X-Custom-User');
-  userId = !!userId ? userId : "";
-  console.log(`photos/[photoId]/Page token: X-Custom-User: ${userId}`);
+  // const headersList = await headers();
+  // let userId = headersList.get('X-Custom-User');
+  // userId = !!userId ? userId : "";
+  // console.log(`photos/[photoId]/Page X-Custom-User: ${userId}`);
 
   return (
     <div>
@@ -59,7 +59,7 @@ export default async function Page({ params }: Props) {
           </tr>
         </tbody>
       </table>
-      <LikeButton photoId={(await params).photoId} userId={userId} />
+      <LikeButton photoId={(await params).photoId} />
     </div>
   );
 }
