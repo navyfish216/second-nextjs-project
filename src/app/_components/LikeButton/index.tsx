@@ -12,7 +12,7 @@ const fetcher = async (url: string): Promise<Like> => await fetch(url).then(res 
 
 export function LikeButton({ photoId }: { photoId: string }) {
 
-  // cookieから認証トークンを取得
+  // cookieから認証トークンを取得（↓は取れてない）
   // const token = Cookies.get('auth-token');
   // console.log(`LikeButton token: ${token}`);
 
