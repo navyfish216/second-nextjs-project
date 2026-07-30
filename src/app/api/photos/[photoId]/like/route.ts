@@ -1,5 +1,5 @@
 import "server-only";
-import { headers, cookies } from 'next/headers';
+import { getToken } from "@/utils/auth";
 
 export async function GET(
   _: Request,
@@ -9,9 +9,8 @@ export async function GET(
 
   const url = `http://localhost:8080/api/photos/${photoId}/like`;
 
-  // cookieから認証トークンを取得
-  const cookieStore = await cookies();
-  const token = cookieStore.get('auth-token')?.value;
+  // 認証トークン取得
+  const token = await getToken();
 
   return await fetch(url, {
     headers: {
@@ -26,9 +25,8 @@ export async function POST(
 ) {
   const photoId = (await params).photoId;
 
-  // cookieから認証トークンを取得
-  const cookieStore = await cookies();
-  const token = cookieStore.get('auth-token')?.value;
+  // 認証トークン取得
+  const token = await getToken();
 
   const res = await fetch(`http://localhost:8080/api/photos/${photoId}/like`, {
     method: "POST",
