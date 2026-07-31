@@ -17,6 +17,7 @@ export function LikeButton({ photoId }: { photoId: string }) {
   // const token = Cookies.get('auth-token');
   // console.log(`LikeButton token: ${token}`);
 
+  // ページ側からいいね情報を渡す場合はuseStateを使用
   // const [like, setLike] = useState(data);
   const [isProcessing, setIsProcessing] = useState(false);
 
