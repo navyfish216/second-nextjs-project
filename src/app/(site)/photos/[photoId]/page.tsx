@@ -5,7 +5,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import getPhoto from '@/services/photo/getPhoto';
 import { LikeButton } from "@/app/_components/LikeButton";
 import styles from "./page.module.css";
-import type { Like } from "@/type";
+// import type { Like } from "@/type";
 
 type Props = {
   params: Promise<{ photoId: string }>;
@@ -29,7 +29,7 @@ export default async function Page({ params }: Props) {
   const photo = await getPhoto(photoId);
 
   // useSWRを使用しない場合はページ側でいいね情報を取得してコンポーネントに渡す
-  const data: Like = await fetch(`http://localhost:4000/api/photos/${photoId}/like`).then(res => res.json());
+  // const data: Like = await fetch(`http://localhost:4000/api/photos/${photoId}/like`).then(res => res.json());
   
   // cookieから認証トークンを取得
   // const cookieStore = await cookies();
@@ -65,7 +65,7 @@ export default async function Page({ params }: Props) {
           </tr>
         </tbody>
       </table>
-      <LikeButton photoId={(await params).photoId} data={data}/>
+      <LikeButton photoId={(await params).photoId} />
     </div>
   );
 }
