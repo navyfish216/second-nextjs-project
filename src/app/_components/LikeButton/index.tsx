@@ -22,18 +22,21 @@ export function LikeButton({ photoId }: { photoId: string }) {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const url: string = `/api/photos/${photoId}/like`;
-  const {data, isLoading, mutate} = useSWR<Like>(url, fetcher);
+  // フォーカスON時のfetchを抑止
+  const {data, isLoading, mutate} = useSWR<Like>(url, fetcher, { revalidateOnFocus: false });
+  // 5秒おきに再fetchする場合は↓（いいね数を勝手に最新化してくれるので便利）
+  // const {data, isLoading, mutate} = useSWR<Like>(url, fetcher, { revalidateOnFocus: false, refreshInterval: 5000 });
 
   const handleLike = async () => {
     setIsProcessing(true);
+    // サーバーから取り直すのではなく、自操作分だけ反映することでパフォーマンスを稼ぐ
+    if (data !== undefined) {
+      data.liked = !data.liked;
+      data.likes = data.liked ? data.likes + 1 : data.likes - 1;
+    }
     await postLike(photoId);
-    // サーバーから取り直すのではなく、自操作分だけステートに反映することでパフォーマンスを稼ぐ
-    // setLike({
-    //   liked: !like.liked, 
-    //   likes: like.liked ? like.likes - 1 : like.likes + 1
-    // });
-    // useSWR使用時はmutateで再取得
-    mutate();
+    // useSWR使用時はmutateでサーバーから再取得することもできるが、その分パフォーマンスは落ちる
+    // mutate();
     setIsProcessing(false);
   };
 

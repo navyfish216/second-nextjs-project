@@ -11,8 +11,8 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: "(site)Photo Share",
-  description: "(site)「Photo Share」は、ユーザーが自由に写真を共有し、コメントや「いいね」を通じて交流することができるSNSアプリケーションです。",
+  title: "Photo Share",
+  description: "「Photo Share」は、ユーザーが自由に写真を共有し、コメントや「いいね」を通じて交流することができるSNSアプリケーションです。",
 };
 
 // 動的要素が入り混り構成される(site)配下で全適用されるレイアウト
