@@ -1,5 +1,5 @@
 import "server-only";
-import { getToken } from "@/utils/auth";
+import { getAccessToken } from "@/utils/auth";
 
 export async function GET(
   _: Request,
@@ -10,11 +10,11 @@ export async function GET(
   const url = `http://localhost:8080/api/photos/${photoId}/like`;
 
   // 認証トークン取得
-  const token = await getToken();
+  const token = await getAccessToken();
 
   return await fetch(url, {
     headers: {
-      'X-Auth-Token': `${token}`,
+      'X-Access-Token': `${token}`,
     }
   });
 }
@@ -26,12 +26,12 @@ export async function POST(
   const photoId = (await params).photoId;
 
   // 認証トークン取得
-  const token = await getToken();
+  const token = await getAccessToken();
 
   const res = await fetch(`http://localhost:8080/api/photos/${photoId}/like`, {
     method: "POST",
     headers: {
-      'X-Auth-Token': `${token}`,
+      'X-Access-Token': `${token}`,
     }
   });
   return res;

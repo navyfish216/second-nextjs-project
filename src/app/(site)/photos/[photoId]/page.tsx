@@ -33,7 +33,7 @@ export default async function Page({ params }: Props) {
   
   // cookieから認証トークンを取得
   // const cookieStore = await cookies();
-  // const token = cookieStore.get('auth-token')?.value;
+  // const token = cookieStore.get('access-token')?.value;
   // console.log(`photos/[photoId]/Page token: ${token}`);
 
   // ヘッダーからユーザーIDを取得

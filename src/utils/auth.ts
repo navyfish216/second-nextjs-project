@@ -17,33 +17,61 @@ function formatDate(date: Date): string {
   return formatter.format(date);    
 }
 
-export async function getToken() {
+export async function getAccessToken() {
 
-  // cookieから認証トークンを取得
+  // cookieからアクセストークンを取得
   const cookieStore = await cookies();
-  let authToken = cookieStore.get('auth-token')?.value;
-  console.log(`${formatDate(new Date())} auth.ts:getToken authToken : ${authToken}`);
+  let accessToken = cookieStore.get('access-token')?.value;
+  console.log(`${formatDate(new Date())} auth.ts:getAccessToken accessToken : ${accessToken}`);
 
-  // cookieに認証トークン存在しない場合は設定（有効期間：10分）
-  if (!authToken) {
-    const newAuthToken = await auth("dummy", "********");
-    cookieStore.set('auth-token', newAuthToken, {maxAge: 60 * 10});
-    authToken = newAuthToken;
-    console.log(`${formatDate(new Date())} auth.ts:getToken auth-tokenを設定 : ${authToken}`);
+  // cookieにアクセストークン存在しない場合
+  if (!accessToken) {
+    // リフレッシュトークンを取得
+    let refreshToken = cookieStore.get('refresh-token')?.value;
+    console.log(`${formatDate(new Date())} auth.ts:getAccessToken refreshToken : ${refreshToken}`);
+
+    // cookieにリフレッシュトークンが存在しない場合はログインして取得
+    if (!refreshToken) {
+      const newRefreshToken = await login("dummy", "********");
+      // cookieにリフレッシュトークンを設定（有効期間：7日）
+      cookieStore.set('refresh-token', newRefreshToken, {maxAge: 60 * 60 * 24 * 7});
+      refreshToken = newRefreshToken;
+      console.log(`${formatDate(new Date())} auth.ts:getAccessToken refresh-tokenを設定 : ${refreshToken}`);
+    }
+
+    // リフレッシュトークンからアクセストークンを取得して設定（有効期間：10分）
+    const newAccessToken = await token(refreshToken);
+    cookieStore.set('access-token', newAccessToken, {maxAge: 60 * 10});
+    accessToken = newAccessToken;
+    console.log(`${formatDate(new Date())} auth.ts:getAccessToken access-tokenを設定 : ${accessToken}`);
   }
 
-  return authToken;
+  return accessToken;
 }
 
-export async function auth(userId: string, password: string) {
+export async function login(userId: string, password: string) {
 
-  const authUrl: string = 'http://localhost:8080/api/auth';
+  const url: string = 'http://localhost:8080/api/auth/login';
   const body: string = JSON.stringify({userId: userId, password: password});
-  const data = await fetch(authUrl, {
+  const data = await fetch(url, {
     method: "POST",
     body: body
   }).then((res) => res.json());
-  const authToken = JSON.parse(data).authToken;
+  const refreshToken = JSON.parse(data).refreshToken;
 
-  return authToken;
+  return refreshToken;
+}
+
+export async function token(refreshToken: string | undefined) {
+
+  const url: string = 'http://localhost:8080/api/auth/token';
+  const data = await fetch(url, {
+    method: "GET",
+    headers: {
+      'X-Refresh-Token': `${refreshToken}`,
+    }  
+  }).then((res) => res.json());
+  const accessToken = JSON.parse(data).accessToken;
+
+  return accessToken;
 }

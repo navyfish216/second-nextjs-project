@@ -14,7 +14,7 @@ const fetcher = async (url: string): Promise<Like> => await fetch(url).then(res 
 export function LikeButton({ photoId }: { photoId: string }) {
 
   // cookieから認証トークンを取得（↓は取れてない）
-  // const token = Cookies.get('auth-token');
+  // const token = Cookies.get('access-token');
   // console.log(`LikeButton token: ${token}`);
 
   // ページ側からいいね情報を渡す場合はuseStateを使用
