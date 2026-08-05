@@ -31,11 +31,6 @@ export default async function Page({ params }: Props) {
   // useSWRを使用しない場合はページ側でいいね情報を取得してコンポーネントに渡す
   // const data: Like = await fetch(`http://localhost:4000/api/photos/${photoId}/like`).then(res => res.json());
   
-  // cookieから認証トークンを取得
-  // const cookieStore = await cookies();
-  // const token = cookieStore.get('access-token')?.value;
-  // console.log(`photos/[photoId]/Page token: ${token}`);
-
   // ヘッダーからユーザーIDを取得
   // const headersList = await headers();
   // let userId = headersList.get('X-Custom-User');
