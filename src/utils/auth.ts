@@ -33,8 +33,8 @@ export async function getAccessToken() {
     // cookieにリフレッシュトークンが存在しない場合はログインして取得
     if (!refreshToken) {
       const newRefreshToken = await login("dummy", "********");
-      // cookieにリフレッシュトークンを設定（有効期間：7日）
-      cookieStore.set('refresh-token', newRefreshToken, {maxAge: 60 * 60 * 24 * 7});
+      // cookieにリフレッシュトークンを設定（有効期間：12時間）
+      cookieStore.set('refresh-token', newRefreshToken, {maxAge: 60 * 60 * 12});
       refreshToken = newRefreshToken;
       console.log(`${formatDate(new Date())} auth.ts:getAccessToken refresh-tokenを設定 : ${refreshToken}`);
     }
